@@ -1,8 +1,9 @@
 import React from "react";
 import "./styles.css";
+//import Modal from "./modal.js";
 
 function TodoList(props) {
-  console.log(`log from ToDoList.js ${props.task}`);
+  //console.log(`log from ToDoList.js ${props.task}`);
   const taskList = props.task;
   //for each task create div w/ classname list TODO
   //inside div, diplay each task text and pass task ID
@@ -16,8 +17,9 @@ function TodoList(props) {
             Delete
           </button>
           <button
+            //call & pass target text to showModal function on edit click
             type="submit"
-            onClick={() => props.editTask(task.text, task.uniqueID)}
+            onClick={() => props.showModal(task.text)}
           >
             Edit
           </button>
@@ -26,7 +28,9 @@ function TodoList(props) {
     );
   });
   //const listItems = props.items;
-  return <div>reached TodoList.js/taskList {eachTask} </div>;
+  return (
+    <div className="eachTask">reached TodoList.js/taskList {eachTask} </div>
+  );
 }
 
 export default TodoList;

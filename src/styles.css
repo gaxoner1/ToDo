@@ -1,3 +1,15 @@
+body {
+  color: white;
+  background-color: rgb(129, 158, 126);
+}
+
+.siteHeading {
+  font-weight: bold;
+  font-size: 1.5em;
+  text-align: center;
+  margin: 1em 0;
+  color: rgb(220, 248, 177);
+}
 .App {
   font-family: sans-serif;
   text-align: center;
@@ -5,4 +17,40 @@
 
 button {
   cursor: pointer;
+}
+
+#todo-body {
+  font-weight: bold;
+  margin: auto;
+  width: 80%;
+}
+
+#input {
+  width: 90%;
+  height: 35px;
+}
+
+#addBtn {
+  width: 90%;
+  margin: 5px 5px;
+}
+
+/*todolist.js styling for tasks*/
+.taskbody {
+  font-weight: bold;
+  display: inline;
+}
+
+.taskbody button {
+  height: 20px;
+  width: 4rem;
+  display: inline-block;
+  position: relative;
+  left: 80px;
+  border: 2px solid rgb(21, 17, 223);
+  margin: 5px;
+}
+
+.eachTask {
+  background-color: rgb(150, 184, 171);
 }

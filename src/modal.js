@@ -3,17 +3,19 @@ import React from "react";
 
 class Modal extends React.Component {
   render() {
-    //TODO: !this.propßs.showModal
-    if (this.props.showModal) {
+    if (!this.props.showModal) {
       return null;
     }
     return (
       <div className="modal">
         <div>{this.props.children}</div>
-        <input type="text" defaultValue="*TODO-insert target text*" />
+        <input type="text" defaultValue={this.props.currentTaskText} />
         <button
           onClick={e => {
-            this.showModal();
+            ///done clicked - need to take text value update state with new text
+            ///need to update state of modal to false (dont show)
+            this.props.handleDone(e.target.value);
+            //this.showModal();
           }}
         >
           Done
@@ -21,13 +23,6 @@ class Modal extends React.Component {
       </div>
     );
   }
-
-  showModal = e => {
-    console.log(`show modal func reached`);
-    //     this.setState({
-    //       show: true
-    //     });
-  };
 }
 
 export default Modal;
