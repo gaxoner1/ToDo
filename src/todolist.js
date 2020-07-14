@@ -17,9 +17,9 @@ function TodoList(props) {
             Delete
           </button>
           <button
-            //call & pass target text to showModal function on edit click
+            //call & pass target text/ ID to showModal function on edit click
             type="submit"
-            onClick={() => props.showModal(task.text)}
+            onClick={() => props.showModal(task.text, task.uniqueID)}
           >
             Edit
           </button>
@@ -28,9 +28,7 @@ function TodoList(props) {
     );
   });
   //const listItems = props.items;
-  return (
-    <div className="eachTask">reached TodoList.js/taskList {eachTask} </div>
-  );
+  return <div className="eachTask"> {eachTask} </div>;
 }
 
 export default TodoList;

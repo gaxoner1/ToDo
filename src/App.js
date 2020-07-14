@@ -7,7 +7,6 @@ import Modal from "./modal.js";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    //uniqueId.enableUniqueIds(this);
 
     this.state = {
       showModal: false,
@@ -57,7 +56,8 @@ class App extends React.Component {
           text: "",
           id: ""
         },
-        editText: ""
+        editText: "",
+        editID: ""
       });
     }
   };
@@ -76,19 +76,36 @@ class App extends React.Component {
     });
   };
 
-  handleDone = text => {
-    // this.setState({
-    //   showModal: true
-    // });
-    console.log(`text from done onclick: ${text}`);
-    //console.log(`id from edit func: ${id}`);
+  handleDone = (newTask, newTaskID) => {
+    //const existTaskID = this.state.currentTask.uniqueID //grab the task ID to be compared with edited version
+    console.log(`task list in handleDone ${newTask}`);
+    let updatedTasks = this.state.tasks.map(task => {
+      if (task.uniqueID === newTaskID) {
+        let updatedTask = { text: newTask, uniqueID: newTaskID };
+        return updatedTask;
+      } else {
+        return task;
+      }
+    });
+    //Done click event passed newTask and ID (kept same) so we can compare unique IDs and update text
+    //and rerender list of task (if ids match - make a change, else return.)
+    // here take new text and update state for showmodal, state of task list
+    // console.log(`text from done onclick: ${newTask}`);
+    // console.log(`id from edit func: ${newTaskID}`);
+    this.setState({
+      showModal: false,
+      tasks: updatedTasks
+    });
   };
 
-  showModal = targetText => {
-    console.log(`showModal Reached, edit target text: ${targetText}`);
+  showModal = (targetText, targetID) => {
+    console.log(
+      `showModal Reached, edit target text: ${targetText}, ${targetID}`
+    );
     this.setState({
       showModal: !this.state.showModal,
-      editText: `${targetText}`
+      editText: `${targetText}`,
+      editID: `${targetID}`
     });
   };
 
@@ -118,12 +135,13 @@ class App extends React.Component {
         {/* pass task text to modal for input to be edited & show boolean to toggle 
           pass the edit functo to this modal.*/}
         <Modal
-          task={this.state.tasks}
+          //task={this.state.tasks}
           showModal={this.state.showModal}
           handleDone={this.handleDone} //*** TODO check edit call from modal
           currentTaskText={this.state.editText} //passes text of task
+          currentTaskID={this.state.editID} //pass id of task
         >
-          Message in Edit Modal (child)
+          Edit Task Below:
         </Modal>
       </div>
     );
